@@ -1,12 +1,23 @@
 ---
 # root work
 - block:
-    - name: Add go repo (http://go-repo.io/)
+    - name: Add go repo (http://go-repo.io/) for CentOS
       yum_repository:
         name: go-repo
         description: go-repo.io
         gpgkey: https://mirror.go-repo.io/centos/RPM-GPG-KEY-GO-REPO
         baseurl: https://mirror.go-repo.io/centos/$releasever/$basearch/
+      when:
+        ansible_distribution == "CentOS"
+
+    - name: Add go repo (http://go-repo.io/) for Fedora
+      yum_repository:
+        name: go-repo
+        description: go-repo.io
+        gpgkey: https://mirror.go-repo.io/fedora/RPM-GPG-KEY-GO-REPO
+        baseurl: https://mirror.go-repo.io/fedora/$releasever/$basearch/
+      when:
+        ansible_distribution == "Fedora"
 
     - name: Install golang
       package:
