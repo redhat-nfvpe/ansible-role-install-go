@@ -29,10 +29,10 @@
 # user work
 - name: Setup GOPATH directory structure
   file:
-    path: "{{ ansible_env.HOME }}/{{gopath}}"
+    path: "{{ ansible_env.HOME }}/{{ gopath }}"
     state: directory
 
 - name: Setup GOPATH environment variable
   lineinfile:
-    path: "{{ ansible_env.HOME}}/.bash_profile"
+    path: "{{ ansible_env.HOME }}/.bash_profile"
     line: "export GOPATH=$HOME/{{ gopath }}"
